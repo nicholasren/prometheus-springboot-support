@@ -1,0 +1,24 @@
+buildscript {
+  repositories {
+    mavenCentral()
+      jcenter()
+  }
+}
+
+allprojects {
+  apply plugin: 'idea'
+    repositories {
+      mavenCentral()
+    }
+}
+
+ext {
+  javaProjects = [project(':core')]
+}
+
+apply from: "${rootDir}/build-support/java.gradle"
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.13'
+}
+

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC    "-//Puppy Crawl//DTD Suppressions 1.1//EN"    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+	<suppress checks="HideUtilityClassConstructorCheck" files="Application.java" />
+	<suppress checks="MagicNumberCheck" files="DbTimeBasedEventSqlSchema\.java"/>
+	<suppress checks="VisibilityModifierCheck" files="BaseIntegrationTest\.java"/>
+	<suppress checks="TypeNameCheck" files="Constants\.java"/>
+	<suppress checks="CyclomaticComplexity" files="RecipientDeserializer\.java"/>
+	<suppress checks="CyclomaticComplexity" files="PredicateEvaluator\.java"/>
+	<suppress checks="CyclomaticComplexity" files="ActionApplier\.java"/>
+	<suppress checks="CyclomaticComplexity" files="ConditionEvaluator\.java"/>
+	<suppress checks="CyclomaticComplexity" files="FieldValueEvaluator\.java"/>
+
+	<!-- Class copied from AxonFramework -->
+	<suppress checks=".*" files="DefaultEventEntryStore\.java" />
+	<suppress checks=".*" files="FixedEventEntryStore\.java" />
+	<suppress checks=".*" files="FixedPostgresEventSqlSchema\.java" />
+
+	<!-- Prometheus Metric Collector -->
+	<suppress checks=".*" files="TransactionLatencyMetrics\.java" />
+	<suppress checks=".*" files="CheckedSupplier\.java" />
+</suppressions>

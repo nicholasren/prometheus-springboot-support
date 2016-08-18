@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Package name="com.aconex.mail.routing.axon.eventstore.jdbc" />
+        <Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" />
+    </Match>
+    <Match>
+        <Package name="com.aconex.mail.routing.axon.eventstore.jdbc" />
+        <Bug pattern="ODR_OPEN_DATABASE_RESOURCE" />
+    </Match>
+</FindBugsFilter>

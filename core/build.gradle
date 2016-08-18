@@ -1,0 +1,14 @@
+dependencies {
+
+    compile lib.servletApi
+    compile lib.aspectjWeaver
+
+    compile lib.springWeb
+    compile lib.springBoot
+
+    compile lib.prometheus
+    compile lib.prometheusServlet
+    compile lib.prometheusHotspot
+
+}
+
