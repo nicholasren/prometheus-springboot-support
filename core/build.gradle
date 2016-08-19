@@ -10,5 +10,10 @@ dependencies {
     compile lib.prometheusServlet
     compile lib.prometheusHotspot
 
+    testCompile lib.junitApi
+    testCompile lib.junitEngine
+    testCompile lib.assertj
+    testCompile lib.junit4
+
 }
 

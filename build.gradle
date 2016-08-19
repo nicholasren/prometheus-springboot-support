@@ -1,24 +1,27 @@
 buildscript {
-  repositories {
-    mavenCentral()
-      jcenter()
-  }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M2'
+    }
 }
 
 allprojects {
-  apply plugin: 'idea'
+    apply plugin: 'idea'
     repositories {
-      mavenCentral()
+        mavenCentral()
     }
 }
 
 ext {
-  javaProjects = [project(':core')]
+    javaProjects = [project(':core')]
 }
 
 apply from: "${rootDir}/build-support/java.gradle"
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.13'
+    gradleVersion = '2.13'
 }
 
