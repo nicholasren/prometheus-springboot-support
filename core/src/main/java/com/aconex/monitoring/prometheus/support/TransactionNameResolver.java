@@ -1,7 +1,6 @@
 package com.aconex.monitoring.prometheus.support;
 
-import static com.aconex.monitoring.prometheus.support.Arrays.firstOf;
-import static com.aconex.monitoring.prometheus.support.Arrays.or;
+import static com.aconex.monitoring.prometheus.support.Arrays.first;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -13,46 +12,46 @@ public final class TransactionNameResolver {
 
     private static final String DEFAULT_PATH = "";
 
-    private TransactionNameResolver() {
+    public static TransactionNameResolver create() {
+        return new TransactionNameResolver();
     }
 
-    public Optional<String> on(Class<?> cls, Method m) {
-        return httpMethodOf(m)
-                .map(httpMethod -> httpMethod + " " + mappingPathOf(cls))
-                .map(path -> path + mappingPathOf(m));
+    public Optional<String> nameOf(Class<?> clazz, Method method) {
+        return httpMethodOn(method)
+                .map(httpMethod -> httpMethod + " " + mappingPathOf(clazz))
+                .map(path -> path + mappingPathOf(method));
     }
 
-    private static String mappingPathOf(Method method) {
-        return path(mappingOf(method));
+    private String mappingPathOf(Method method) {
+        return pathOf(mappingOf(method));
     }
 
-    private static String mappingPathOf(Class<?> cls) {
-        return path(mappingOf(cls));
+    private String mappingPathOf(Class<?> cls) {
+        return pathOf(mappingOf(cls));
     }
 
-    private static String path(Optional<RequestMapping> annotation) {
+    private String pathOf(Optional<RequestMapping> annotation) {
         return annotation
-                .flatMap(a -> or(firstOf(a.value()), firstOf(a.path())))
+                .flatMap(a -> first(a.value(), a.path()))
                 .orElse(DEFAULT_PATH);
     }
 
-    private static Optional<String> httpMethodOf(Method method) {
-        return firstOf(annotationOf(method).method()).map(RequestMethod::name);
+    private Optional<String> httpMethodOn(Method method) {
+        return first(annotationOf(method).method()).map(RequestMethod::name);
     }
 
-    private static RequestMapping annotationOf(Method method) {
+    private RequestMapping annotationOf(Method method) {
         return method.getAnnotation(RequestMapping.class);
     }
 
-    private static Optional<RequestMapping> mappingOf(Method method) {
+    private Optional<RequestMapping> mappingOf(Method method) {
         return Optional.ofNullable(method.getAnnotation(RequestMapping.class));
     }
 
-    private static Optional<RequestMapping> mappingOf(Class<?> cls) {
+    private Optional<RequestMapping> mappingOf(Class<?> cls) {
         return Optional.ofNullable(cls.getAnnotation(RequestMapping.class));
     }
 
-    public static TransactionNameResolver of() {
-        return new TransactionNameResolver();
+    private TransactionNameResolver() {
     }
 }

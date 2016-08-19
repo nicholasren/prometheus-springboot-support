@@ -4,14 +4,11 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Arrays {
-    static <T> Optional<T> firstOf(T[] values) {
-        return values == null || values.length == 0 ? Optional.empty() : Optional.of(values[0]);
-    }
 
-    static <T> Optional<T> or(Optional<T>... ts) {
+    static <T> Optional<T> first(T[]... ts) {
         return Stream.of(ts)
-                .filter(Optional::isPresent)
+                .filter(t -> t.length > 0)
                 .findFirst()
-                .orElse(Optional.empty());
+                .map(t -> t[0]);
     }
 }

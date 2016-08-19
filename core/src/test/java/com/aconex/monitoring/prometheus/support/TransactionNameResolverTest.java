@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 public class TransactionNameResolverTest {
-    private TransactionNameResolver resolver = TransactionNameResolver.of();
+    private TransactionNameResolver resolver = TransactionNameResolver.create();
 
     @DisplayName("when controller is annotated with @RequestMapping")
     @Nested
@@ -26,7 +26,7 @@ public class TransactionNameResolverTest {
         @DisplayName("should generate transaction name for method without path")
         public void methodWithoutPath() {
             Method without_path = method(MappingController.class, "without_path");
-            Optional<String> name = resolver.on(MappingController.class, without_path);
+            Optional<String> name = resolver.nameOf(MappingController.class, without_path);
 
             assertThat(name).hasValue("POST /sample");
         }
@@ -35,7 +35,7 @@ public class TransactionNameResolverTest {
         @DisplayName("should generate name for method with path")
         public void methodWithPath() {
             Method with_path = method(MappingController.class, "with_path");
-            Optional<String> name = resolver.on(MappingController.class, with_path);
+            Optional<String> name = resolver.nameOf(MappingController.class, with_path);
 
             assertThat(name).hasValue("GET /sample/with_path/{id}");
         }
@@ -44,7 +44,7 @@ public class TransactionNameResolverTest {
         @DisplayName("should generate name for url assigned via value")
         public void methodWithValue() {
             Method with_value = method(MappingController.class, "with_value");
-            Optional<String> name = resolver.on(MappingController.class, with_value);
+            Optional<String> name = resolver.nameOf(MappingController.class, with_value);
 
             assertThat(name).hasValue("GET /sample/with_value/{id}");
         }
@@ -58,8 +58,16 @@ public class TransactionNameResolverTest {
         @Test
         public void controllerWithoutPathMethodWithPath() {
             Method with_path = method(NoMappingController.class, "with_path");
-            Optional<String> name = resolver.on(NoMappingController.class, with_path);
-            assertThat(name).hasValue("GET /about");
+            Optional<String> name = resolver.nameOf(NoMappingController.class, with_path);
+            assertThat(name).hasValue("GET /with_path");
+        }
+
+        @DisplayName("should generate name for method with value")
+        @Test
+        public void controllerWithoutPathMethodWithValue() {
+            Method with_value = method(NoMappingController.class, "with_value");
+            Optional<String> name = resolver.nameOf(NoMappingController.class, with_value);
+            assertThat(name).hasValue("GET /with_value");
         }
     }
 }
