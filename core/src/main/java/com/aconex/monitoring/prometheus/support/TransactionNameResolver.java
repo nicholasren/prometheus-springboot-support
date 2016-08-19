@@ -4,29 +4,21 @@ import static com.aconex.monitoring.prometheus.support.Arrays.optionalFirstOf;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
-import com.aconex.monitoring.prometheus.mocking.Recorder;
-import com.aconex.monitoring.prometheus.mocking.RecordingObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-public final class TransactionNameResolver<Controller> {
+public final class TransactionNameResolver {
 
     private static final String DEFAULT_PATH = "";
-    private final Class<Controller> cls;
-    private final Recorder<Controller> recorder;
 
-    private TransactionNameResolver(Class<Controller> cls) {
-        this.cls = cls;
-        this.recorder = RecordingObject.create(cls);
+    private TransactionNameResolver() {
     }
 
-    public static Optional<String> transactionNameOf(Class<?> controllerClass, Method method) {
-        return requestMethodOf(method)
-                .map(m -> m + " " + controllerPathOf(controllerClass))
-                .map(path -> path + methodPathOf(method));
+    public Optional<String> on(Class<?> cls, Method m) {
+        return requestMethodOf(m)
+                .map(method -> method + " " + controllerPathOf(cls))
+                .map(path -> path + methodPathOf(m));
     }
 
     private static String methodPathOf(Method method) {
@@ -36,8 +28,8 @@ public final class TransactionNameResolver<Controller> {
                         .orElse(DEFAULT_PATH));
     }
 
-    private static String controllerPathOf(Class<?> controllerClass) {
-        return controllerAnnotation(controllerClass)
+    private static String controllerPathOf(Class<?> cls) {
+        return controllerAnnotation(cls)
                 .map(RequestMapping::value)
                 .flatMap(Arrays::optionalFirstOf)
                 .orElse(DEFAULT_PATH);
@@ -51,23 +43,13 @@ public final class TransactionNameResolver<Controller> {
         return method.getAnnotation(RequestMapping.class);
     }
 
-    private static Optional<RequestMapping> controllerAnnotation(Class<?> controllerClass) {
-        return Optional.ofNullable(controllerClass.getAnnotation(RequestMapping.class));
+    private static Optional<RequestMapping> controllerAnnotation(Class<?> cls) {
+        return Optional.ofNullable(cls.getAnnotation(RequestMapping.class));
     }
 
-    public static <Controller> TransactionNameResolver<Controller> of(Class<Controller> clazz) {
-        return new TransactionNameResolver<>(clazz);
+    public static TransactionNameResolver of() {
+        return new TransactionNameResolver();
     }
 
-    public <U> Optional<String> on(Function<Controller, U> action) {
-        action.apply(recorder.getObject());
-        Method method = recorder.getCurrentMethod();
-        return transactionNameOf(cls, method);
-    }
 
-    public Optional<String> on(Consumer<Controller> action) {
-        action.accept(recorder.getObject());
-        Method method = recorder.getCurrentMethod();
-        return transactionNameOf(cls, method);
-    }
 }

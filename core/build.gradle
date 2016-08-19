@@ -14,6 +14,7 @@ dependencies {
     testCompile lib.junitEngine
     testCompile lib.assertj
     testCompile lib.junitPlatformRunner
+    testCompile lib.mokito
 
 }
 

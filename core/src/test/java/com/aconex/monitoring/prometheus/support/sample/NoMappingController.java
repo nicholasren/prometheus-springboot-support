@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NoMappingController {
     @RequestMapping(method = RequestMethod.GET, path = "/about")
-    public void method_with_path() {
+    public void with_path() {
     }
 }

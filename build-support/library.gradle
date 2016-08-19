@@ -40,5 +40,6 @@ lib.definitions = [
         junitApi           : "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}",
         junitEngine        : "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}",
         junitPlatformRunner: "org.junit.platform:junit-platform-runner:${junitPlatformRunnerVersion}",
-        assertj            : "org.assertj:assertj-core:3.4.1"
+        assertj            : "org.assertj:assertj-core:3.4.1",
+        mokito             :"org.mockito:mockito-core:2.0.106-beta"
 ]
