@@ -37,16 +37,16 @@ public class TransactionNameResolverTest {
             Method with_path = method(MappingController.class, "with_path");
             Optional<String> name = resolver.on(MappingController.class, with_path);
 
-            assertThat(name).hasValue("GET /sample/sub/{id}");
+            assertThat(name).hasValue("GET /sample/with_path/{id}");
         }
 
         @Test
         @DisplayName("should generate name for url assigned via value")
         public void methodWithValue() {
-            Method with_value = method(MappingController.class, "with_path");
+            Method with_value = method(MappingController.class, "with_value");
             Optional<String> name = resolver.on(MappingController.class, with_value);
 
-            assertThat(name).hasValue("GET /sample/sub/{id}");
+            assertThat(name).hasValue("GET /sample/with_value/{id}");
         }
     }
 
