@@ -13,7 +13,7 @@ dependencies {
     testCompile lib.junitApi
     testCompile lib.junitEngine
     testCompile lib.assertj
-    testCompile lib.junit4
+    testCompile lib.junitPlatformRunner
 
 }
 
