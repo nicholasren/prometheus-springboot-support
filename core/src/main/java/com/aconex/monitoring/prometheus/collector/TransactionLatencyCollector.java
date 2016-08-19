@@ -1,6 +1,7 @@
 package com.aconex.monitoring.prometheus.collector;
 
 import com.aconex.monitoring.prometheus.support.CheckedSupplier;
+import com.aconex.monitoring.prometheus.support.Try;
 import io.prometheus.client.Histogram;
 
 public final class TransactionLatencyCollector {
@@ -13,17 +14,9 @@ public final class TransactionLatencyCollector {
     public static <T> T measure(String transactionName, CheckedSupplier<T> supplier) {
         Histogram.Timer timer = REQUEST_LATENCY.labels(transactionName).startTimer();
         try {
-            return tryOf(supplier);
+            return Try.of(supplier);
         } finally {
             timer.observeDuration();
-        }
-    }
-
-    private static <T> T tryOf(CheckedSupplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (Throwable t) {//NOPMD
-            throw new RuntimeException(t);
         }
     }
 

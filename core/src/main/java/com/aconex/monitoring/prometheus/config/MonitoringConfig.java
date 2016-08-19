@@ -1,4 +1,4 @@
-package com.aconex.monitoring.prometheus;
+package com.aconex.monitoring.prometheus.config;
 
 import javax.annotation.PostConstruct;
 
