@@ -12,14 +12,32 @@ allprojects {
     apply plugin: 'idea'
     repositories {
         mavenCentral()
+        jcenter()
     }
 }
 
-ext {
-    javaProjects = [project(':core')]
-}
 
 apply from: "${rootDir}/build-support/java.gradle"
+
+dependencies {
+
+    compile lib.servletApi
+    compile lib.aspectjWeaver
+
+    compile lib.springWeb
+    compile lib.springBoot
+
+    compile lib.prometheus
+    compile lib.prometheusServlet
+    compile lib.prometheusHotspot
+
+    testCompile lib.junitApi
+    testCompile lib.junitEngine
+    testCompile lib.assertj
+    testCompile lib.junitPlatformRunner
+    testCompile lib.mokito
+
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
