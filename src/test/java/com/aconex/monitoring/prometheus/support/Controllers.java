@@ -1,4 +1,4 @@
-package com.aconex.monitoring.prometheus;
+package com.aconex.monitoring.prometheus.support;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -21,6 +21,11 @@ public interface Controllers {
 
         @RequestMapping(method = GET, value = "/with_value/{id}")
         public Object with_value() {
+            return null;
+        }
+
+        @RequestMapping(value = "/with_value/{id}")
+        public Object without_http_method() {
             return null;
         }
 

@@ -16,9 +16,9 @@ public final class TransactionNameResolver {
         return new TransactionNameResolver();
     }
 
-    public Optional<String> nameOf(Class<?> clazz, Method method) {
+    public Optional<String> nameOf(Class<?> cls, Method method) {
         return httpMethodOn(method)
-                .map(httpMethod -> httpMethod + " " + mappingPathOf(clazz))
+                .map(httpMethod -> httpMethod + " " + mappingPathOf(cls))
                 .map(path -> path + mappingPathOf(method));
     }
 
@@ -37,11 +37,10 @@ public final class TransactionNameResolver {
     }
 
     private Optional<String> httpMethodOn(Method method) {
-        return first(annotationOf(method).method()).map(RequestMethod::name);
-    }
-
-    private RequestMapping annotationOf(Method method) {
-        return method.getAnnotation(RequestMapping.class);
+        return mappingOf(method)
+                .map(RequestMapping::method)
+                .flatMap(Arrays::first)
+                .map(RequestMethod::name);
     }
 
     private Optional<RequestMapping> mappingOf(Method method) {

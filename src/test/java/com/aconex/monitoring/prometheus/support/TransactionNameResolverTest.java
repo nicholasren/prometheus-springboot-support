@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
-import com.aconex.monitoring.prometheus.Controllers.MappingController;
-import com.aconex.monitoring.prometheus.Controllers.NoMappingController;
+import com.aconex.monitoring.prometheus.support.Controllers.MappingController;
+import com.aconex.monitoring.prometheus.support.Controllers.NoMappingController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -47,6 +47,14 @@ public class TransactionNameResolverTest {
             Optional<String> name = resolver.nameOf(MappingController.class, with_value);
 
             assertThat(name).hasValue("GET /sample/with_value/{id}");
+        }
+
+        @Test
+        @DisplayName("should not generate name for no HTTP Method")
+        public void methodWithoutHttpMethod() {
+            Method with_value = method(MappingController.class, "without_http_method");
+            Optional<String> name = resolver.nameOf(MappingController.class, with_value);
+            assertThat(name).isNotPresent();
         }
     }
 
