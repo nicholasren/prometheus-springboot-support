@@ -10,16 +10,12 @@ import org.aspectj.lang.ProceedingJoinPoint;
 
 public final class TransactionLatencyCollector {
 
-    private static final Histogram REQUEST_LATENCY = Histogram.build()
-            .name("controller_latency_seconds")
-            .labelNames("transaction")
-            .help("Controller latency in seconds")
-            .register();
+    private final Histogram metric;
 
-    private TransactionNameResolver resolver;
+    private final TransactionNameResolver resolver;
 
     public static TransactionLatencyCollector create() {
-        return new TransactionLatencyCollector(TransactionNameResolver.create());
+        return new TransactionLatencyCollector(metric(), TransactionNameResolver.create());
     }
 
     public Object measure(ProceedingJoinPoint pjp) {
@@ -32,7 +28,7 @@ public final class TransactionLatencyCollector {
     }
 
     private Object measure(String transactionName, CheckedSupplier<Object> proceed) {
-        Histogram.Timer timer = REQUEST_LATENCY.labels(transactionName).startTimer();
+        Histogram.Timer timer = metric.labels(transactionName).startTimer();
         try {
             return Try.of(proceed);
         } finally {
@@ -40,7 +36,16 @@ public final class TransactionLatencyCollector {
         }
     }
 
-    TransactionLatencyCollector(TransactionNameResolver resolver) {
+    TransactionLatencyCollector(Histogram metric, TransactionNameResolver resolver) {
+        this.metric = metric;
         this.resolver = resolver;
+    }
+
+    private static Histogram metric() {
+        return Histogram.build()
+                .name("controller_latency_seconds")
+                .labelNames("transaction")
+                .help("Controller latency in seconds")
+                .register();
     }
 }
