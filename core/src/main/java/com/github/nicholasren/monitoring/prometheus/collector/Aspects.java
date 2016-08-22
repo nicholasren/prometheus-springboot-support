@@ -1,4 +1,4 @@
-package com.aconex.monitoring.prometheus.collector;
+package com.github.nicholasren.monitoring.prometheus.collector;
 
 import java.lang.reflect.Method;
 

@@ -1,8 +1,8 @@
 package com.example;
 
-import com.aconex.monitoring.prometheus.collector.RequestStatsCollector;
-import com.aconex.monitoring.prometheus.collector.TransactionLatencyCollector;
-import com.aconex.monitoring.prometheus.config.MonitoringConfig;
+import com.github.nicholasren.monitoring.prometheus.collector.RequestStatsCollector;
+import com.github.nicholasren.monitoring.prometheus.collector.TransactionLatencyCollector;
+import com.github.nicholasren.monitoring.prometheus.config.MonitoringConfig;
 import com.example.monitor.MetricAspect;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

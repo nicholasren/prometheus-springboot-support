@@ -1,4 +1,4 @@
-package com.aconex.monitoring.prometheus.config;
+package com.github.nicholasren.monitoring.prometheus.config;
 
 import javax.annotation.PostConstruct;
 
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MonitoringConfig {
-
     @Bean
     public ServletRegistrationBean registerPrometheusExporterServlet() {
         return new ServletRegistrationBean(new MetricsServlet(CollectorRegistry.defaultRegistry), "/metrics");

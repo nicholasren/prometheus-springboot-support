@@ -1,7 +1,7 @@
-package com.aconex.monitoring.prometheus.collector;
+package com.github.nicholasren.monitoring.prometheus.collector;
 
-import static com.aconex.monitoring.prometheus.collector.Aspects.targetClassOf;
-import static com.aconex.monitoring.prometheus.collector.Aspects.targetMethodOf;
+import static com.github.nicholasren.monitoring.prometheus.collector.Aspects.targetClassOf;
+import static com.github.nicholasren.monitoring.prometheus.collector.Aspects.targetMethodOf;
 
 import java.util.Optional;
 

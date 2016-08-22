@@ -1,4 +1,4 @@
-package com.aconex.monitoring.prometheus.collector;
+package com.github.nicholasren.monitoring.prometheus.collector;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

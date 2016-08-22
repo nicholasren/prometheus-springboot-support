@@ -1,0 +1,76 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+project.uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name project.name
+                packaging 'jar'
+                description 'prometheus-springboot-support is a library which bring prometheus monitoring to springboot application'
+                url 'https://github.com/nicholasren/prometheus-springboot-support'
+
+                scm {
+                    url 'https://github.com/nicholasren/prometheus-springboot-support'
+                    connection 'https://github.com/nicholasren/prometheus-springboot-support.git'
+                    developerConnection 'git@github.com:nicholasren/prometheus-springboot-support.git'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT Licence'
+                        url 'https://raw.github.com/nicholasren/prometheus-springboot-support/master/MIT-LICENSE.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'nicholasren'
+                        name 'Nicholas Ren'
+                    }
+                }
+            }
+        }
+    }
+}
+
+project.jar {
+    manifest {
+        attributes 'Package': "com.github.nicholasren.monitoring.prometheus",
+                'Implementation-Title': "${project.name}",
+                'Implementation-Version': "${version}",
+                'Implementation-Vendor': 'Nicholas Ren',
+                'Built-By': 'Nicholas Ren',
+                'Built-Date': new Date().getDateTimeString(),
+                'Built-With': "gradle-${project.getGradle().getGradleVersion()}, groovy-${GroovySystem.getVersion()}",
+                'Created-By': 'Java ' + System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')'
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}

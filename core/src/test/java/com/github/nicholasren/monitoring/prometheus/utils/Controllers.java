@@ -1,4 +1,4 @@
-package com.aconex.monitoring.prometheus.utils;
+package com.github.nicholasren.monitoring.prometheus.utils;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;

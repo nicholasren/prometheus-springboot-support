@@ -1,6 +1,4 @@
-package com.aconex.monitoring.prometheus.collector;
-
-import static com.aconex.monitoring.prometheus.collector.Arrays.first;
+package com.github.nicholasren.monitoring.prometheus.collector;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -39,7 +37,7 @@ class TransactionNameResolver {
 
     private String pathOf(Optional<RequestMapping> annotation) {
         return annotation
-                .flatMap(a -> first(a.value(), a.path()))
+                .flatMap(a -> Arrays.first(a.value(), a.path()))
                 .orElse(DEFAULT_PATH);
     }
 

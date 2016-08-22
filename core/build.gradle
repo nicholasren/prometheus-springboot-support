@@ -1,3 +1,7 @@
+apply from: "${rootDir}/build-support/release.gradle"
+
+archivesBaseName = "monitoring-prometheus"
+
 dependencies {
 
     compile lib.servletApi
