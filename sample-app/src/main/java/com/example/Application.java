@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @Import(MonitoringConfig.class) //TODO: import JavaConfig
 public class Application {
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
