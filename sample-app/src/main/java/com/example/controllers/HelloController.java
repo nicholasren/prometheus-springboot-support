@@ -3,6 +3,7 @@ package com.example.controllers;
 import static java.lang.String.format;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import com.github.nicholasren.monitoring.prometheus.annotations.Monitor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/hello")
+@Monitor //TODO: Annotate target bean
 public class HelloController {
     public HelloController() {
         System.out.println("initing");

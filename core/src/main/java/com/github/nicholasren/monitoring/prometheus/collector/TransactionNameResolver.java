@@ -3,6 +3,7 @@ package com.github.nicholasren.monitoring.prometheus.collector;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
+import com.github.nicholasren.monitoring.prometheus.support.Arrays;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 

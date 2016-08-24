@@ -1,7 +1,7 @@
-package com.github.nicholasren.monitoring.prometheus.collector;
+package com.github.nicholasren.monitoring.prometheus.support;
 
-class Try {
-    static <T> T of(CheckedSupplier<T> supplier) {
+public class Try {
+    public static <T> T of(CheckedSupplier<T> supplier) {
         try {
             return supplier.get();
         } catch (Throwable t) {//NOPMD

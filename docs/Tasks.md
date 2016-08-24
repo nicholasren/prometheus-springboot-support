@@ -1,3 +1,3 @@
 ###### Roadmap
-- Support programmatically aspect creation
-- Support javaagent instrument
+- [X] Support Annotation based integration
+- [] Support javaagent instrument

@@ -1,4 +1,4 @@
-package com.github.nicholasren.monitoring.prometheus.collector;
+package com.github.nicholasren.monitoring.prometheus.support;
 
 /**
  * Wrapper of a supplier which may throw `Throwable`
@@ -6,6 +6,6 @@ package com.github.nicholasren.monitoring.prometheus.collector;
  * @param <T>
  */
 @FunctionalInterface
-interface CheckedSupplier<T> {
+public interface CheckedSupplier<T> {
     T get() throws Throwable;
 }

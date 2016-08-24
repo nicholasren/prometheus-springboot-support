@@ -1,12 +1,12 @@
-package com.github.nicholasren.monitoring.prometheus.collector;
+package com.github.nicholasren.monitoring.prometheus.support;
 
 import java.lang.reflect.Method;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
-class Aspects {
-    static Class<?> targetClassOf(ProceedingJoinPoint pjp) {
+public class Aspects {
+    public static Class<?> targetClassOf(ProceedingJoinPoint pjp) {
         return pjp.getTarget().getClass();
     }
 

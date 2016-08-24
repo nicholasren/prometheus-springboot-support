@@ -2,6 +2,7 @@ package com.github.nicholasren.monitoring.prometheus.collector;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.github.nicholasren.monitoring.prometheus.support.Arrays;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.platform.runner.JUnitPlatform;

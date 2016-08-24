@@ -1,10 +1,12 @@
 package com.github.nicholasren.monitoring.prometheus.collector;
 
-import static com.github.nicholasren.monitoring.prometheus.collector.Aspects.targetClassOf;
-import static com.github.nicholasren.monitoring.prometheus.collector.Aspects.targetMethodOf;
+import static com.github.nicholasren.monitoring.prometheus.support.Aspects.targetClassOf;
+import static com.github.nicholasren.monitoring.prometheus.support.Aspects.targetMethodOf;
 
 import java.util.Optional;
 
+import com.github.nicholasren.monitoring.prometheus.support.CheckedSupplier;
+import com.github.nicholasren.monitoring.prometheus.support.Try;
 import io.prometheus.client.Histogram;
 import org.aspectj.lang.ProceedingJoinPoint;
 
