@@ -1,3 +1,3 @@
-###### Roadmap
+###### Road map
 - [X] Support Annotation based integration
-- [] Support javaagent instrument
+- [ ] Support java agent instrument

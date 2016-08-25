@@ -29,10 +29,10 @@ public final class TransactionLatencyCollector {
         }
     }
 
-    private Object measure(String transactionName, CheckedSupplier<Object> proceed) {
+    private Object measure(String transactionName, CheckedSupplier<Object> supplier) {
         Histogram.Timer timer = metric.labels(transactionName).startTimer();
         try {
-            return Try.of(proceed);
+            return Try.of(supplier);
         } finally {
             timer.observeDuration();
         }
