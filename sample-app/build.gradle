@@ -4,9 +4,4 @@ dependencies {
     compile lib.springBootStarterAop
     compile lib.springBootAutoConfig
     compile lib.springBootStarterTomcat
-
-    testCompile lib.junit4
-    testCompile lib.assertj
-    testCompile lib.mokito
-    testCompile lib.springTest
 }

@@ -6,7 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
 public class Aspects {
-    public static Class<?> targetClassOf(ProceedingJoinPoint pjp) {
+    static Class<?> targetClassOf(ProceedingJoinPoint pjp) {
         return pjp.getTarget().getClass();
     }
 

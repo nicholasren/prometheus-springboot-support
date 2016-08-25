@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 public class Arrays {
 
     @SafeVarargs
-    public static <T> Optional<T> first(T[]... ts) {
+    static <T> Optional<T> first(T[]... ts) {
         return Stream.of(ts)
                 .filter(t -> t.length > 0)
                 .findFirst()
