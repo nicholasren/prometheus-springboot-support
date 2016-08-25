@@ -4,4 +4,10 @@ dependencies {
     compile lib.springBootStarterAop
     compile lib.springBootAutoConfig
     compile lib.springBootStarterTomcat
+
+    testCompile lib.junitApi
+    testCompile lib.junitEngine
+    testCompile lib.assertj
+    testCompile lib.junitPlatformRunner
+    testCompile 'io.rest-assured:rest-assured:3.0.0'
 }

@@ -28,23 +28,25 @@ def junitPlatformRunnerVersion = '1.0.0-M2'
 
 
 lib.definitions = [
-        aspectjWeaver       : "org.aspectj:aspectjweaver:1.8.9",
-        servletApi          : "javax.servlet:javax.servlet-api:3.1.0",
+        aspectjWeaver          : "org.aspectj:aspectjweaver:1.8.9",
+        servletApi             : "javax.servlet:javax.servlet-api:3.1.0",
 
-        springWeb           : "org.springframework:spring-web:${springFrameworkVersion}",
-        springWebMvc: "org.springframework:spring-webmvc:${springFrameworkVersion}",
-        springBoot          : "org.springframework.boot:spring-boot:${springBootVersion}",
-        springBootStarterAop: "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
-        springBootAutoConfig: "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}",
+        springWeb              : "org.springframework:spring-web:${springFrameworkVersion}",
+        springWebMvc           : "org.springframework:spring-webmvc:${springFrameworkVersion}",
+        springBoot             : "org.springframework.boot:spring-boot:${springBootVersion}",
+        springBootStarterAop   : "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+        springBootAutoConfig   : "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}",
         springBootStarterTomcat: "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}",
-        slf4j               : "org.slf4j:slf4j-api:${slf4jVersion}",
-        prometheus          : 'io.prometheus:simpleclient:0.0.14',
-        prometheusHotspot   : 'io.prometheus:simpleclient_hotspot:0.0.14',
-        prometheusServlet   : 'io.prometheus:simpleclient_servlet:0.0.14',
+        slf4j                  : "org.slf4j:slf4j-api:${slf4jVersion}",
+        prometheus             : 'io.prometheus:simpleclient:0.0.14',
+        prometheusHotspot      : 'io.prometheus:simpleclient_hotspot:0.0.14',
+        prometheusServlet      : 'io.prometheus:simpleclient_servlet:0.0.14',
+        httpClient             : "org.apache.httpcomponents:httpclient:4.5.2",
 
-        junitApi            : "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}",
-        junitEngine         : "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}",
-        junitPlatformRunner : "org.junit.platform:junit-platform-runner:${junitPlatformRunnerVersion}",
-        assertj             : "org.assertj:assertj-core:3.4.1",
-        mokito              : "org.mockito:mockito-core:2.0.106-beta"
+
+        junitApi               : "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}",
+        junitEngine            : "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}",
+        junitPlatformRunner    : "org.junit.platform:junit-platform-runner:${junitPlatformRunnerVersion}",
+        assertj                : "org.assertj:assertj-core:3.4.1",
+        mokito                 : "org.mockito:mockito-core:2.0.106-beta"
 ]
