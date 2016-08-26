@@ -1,6 +1,6 @@
-apply from: "${rootDir}/build-support/release.gradle"
+archivesBaseName = "prometheus-springboot-support"
 
-archivesBaseName = "monitoring-prometheus"
+apply from: "${rootDir}/build-support/release.gradle"
 
 dependencies {
 

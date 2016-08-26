@@ -1,17 +1,20 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+//def sonatypeReleaseUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+def sonatypeSnapshotUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+
 project.uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment { deployment -> signing.signPom(deployment) }
 
-            repository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+            repository(url: sonatypeSnapshotUrl) {
                 authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
 
             pom.project {
-                name project.name
+                name "prometheus-springboot-support"
                 packaging 'jar'
                 description 'prometheus-springboot-support is a library which bring prometheus monitoring to springboot application'
                 url 'https://github.com/nicholasren/prometheus-springboot-support'
