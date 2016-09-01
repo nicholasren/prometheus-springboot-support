@@ -1,15 +1,17 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-//def sonatypeReleaseUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+def sonatypeReleaseUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
 def sonatypeSnapshotUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+
+def repoUrl = version.endsWith("SNAPSHOT") ? sonatypeSnapshotUrl : sonatypeReleaseUrl
 
 project.uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment { deployment -> signing.signPom(deployment) }
 
-            repository(url: sonatypeSnapshotUrl) {
+            repository(url: repoUrl) {
                 authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
 
