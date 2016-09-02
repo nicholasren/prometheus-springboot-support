@@ -5,16 +5,16 @@ This component providing few built in metrics for springboot based web applicati
 
 
 #### Getting Started
-1.Add dependency:
+- Add dependency:
 ```groovy
     compile: com.github.nicholasren:prometheus-springboot-support:0.0.1
 ```
-2. Import Monitoring Config:
+- Import Monitoring Config:
 ```java
     @Import(com.github.nicholasren.monitoring.prometheus.config.MonitoringConfig.class)
 ```
 
-3. Annotate to be monitored controllers with `com.github.nicholasren.monitoring.prometheus.annotations.Monitor`:
+- Annotate to be monitored controllers with `com.github.nicholasren.monitoring.prometheus.annotations.Monitor`:
 
 e.g.
 ```java
