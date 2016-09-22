@@ -15,7 +15,7 @@ public class TransactionLatencyAspect {
 
     private TransactionLatencyCollector collector;
 
-    @Pointcut("within(@com.github.nicholasren.monitoring.prometheus.annotations.Monitor *)")
+    @Pointcut("within(@com.github.nicholasren.monitoring.prometheus.annotations.MonitoredController *)")
     public void targetBean() {
     }
 

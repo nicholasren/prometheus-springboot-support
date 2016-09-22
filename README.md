@@ -14,7 +14,7 @@ This component providing few built in metrics for springboot based web applicati
     @Import(com.github.nicholasren.monitoring.prometheus.config.MonitoringConfig.class)
 ```
 
-- Annotate controllers with `com.github.nicholasren.monitoring.prometheus.annotations.Monitor`:
+- Annotate controllers with `com.github.nicholasren.monitoring.prometheus.annotations.MonitoredController`:
 e.g.
 ```java
 @RestController
