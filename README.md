@@ -19,7 +19,7 @@ e.g.
 ```java
 @RestController
 @RequestMapping("/hello")
-@Monitor
+@MonitoredController
 public class HelloController {
 }
 ```
