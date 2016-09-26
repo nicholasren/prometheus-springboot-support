@@ -6,7 +6,6 @@ import static com.github.nicholasren.monitoring.prometheus.support.Aspects.targe
 import java.util.Optional;
 
 import com.github.nicholasren.monitoring.prometheus.support.CheckedSupplier;
-import com.github.nicholasren.monitoring.prometheus.support.Try;
 import io.prometheus.client.Histogram;
 import org.aspectj.lang.ProceedingJoinPoint;
 
@@ -20,19 +19,19 @@ public final class TransactionLatencyCollector {
         return new TransactionLatencyCollector(metric(), TransactionNameResolver.create());
     }
 
-    public Object measure(ProceedingJoinPoint pjp) {
+    public Object measure(ProceedingJoinPoint pjp) throws Throwable {
         Optional<String> name = resolver.nameOf(targetClassOf(pjp), targetMethodOf(pjp));
         if (name.isPresent()) {
             return measure(name.get(), pjp::proceed);
         } else {
-            return Try.of(pjp::proceed);
+            return pjp.proceed();
         }
     }
 
-    private Object measure(String transactionName, CheckedSupplier<Object> supplier) {
+    private Object measure(String transactionName, CheckedSupplier<Object> supplier) throws Throwable {
         Histogram.Timer timer = metric.labels(transactionName).startTimer();
         try {
-            return Try.of(supplier);
+            return supplier.get();
         } finally {
             timer.observeDuration();
         }

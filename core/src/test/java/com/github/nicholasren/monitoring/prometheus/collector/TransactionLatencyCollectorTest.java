@@ -1,5 +1,7 @@
 package com.github.nicholasren.monitoring.prometheus.collector;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.expectThrows;
 import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 import com.github.nicholasren.monitoring.prometheus.utils.Classes;
 import com.github.nicholasren.monitoring.prometheus.utils.Controllers;
+import com.github.nicholasren.monitoring.prometheus.utils.CustomizedException;
 import io.prometheus.client.Histogram;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -54,7 +57,7 @@ public class TransactionLatencyCollectorTest {
 
         @DisplayName("should not measure")
         @Test
-        public void doNotMeasure() {
+        public void doNotMeasure() throws Throwable {
             collector.measure(pjp);
             verifyZeroInteractions(histogram);
         }
@@ -74,10 +77,33 @@ public class TransactionLatencyCollectorTest {
 
         @DisplayName("should measure")
         @Test
-        public void shouldMeasure() {
+        public void shouldMeasure() throws Throwable {
             collector.measure(pjp);
             verify(histogram.labels(transactionName)).startTimer();
             verify(timer).observeDuration();
+        }
+
+        @Nested
+        @DisplayName("when exception occurs")
+        class WhenExceptionOccurs {
+
+            private CustomizedException customizedException;
+
+            @BeforeEach
+            public void setup() throws Throwable {
+                customizedException = new CustomizedException("error happened");
+
+                when(pjp.proceed()).thenThrow(customizedException);
+            }
+
+            @DisplayName("should retain existing exception")
+            @Test
+            public void shouldRetainExistingException() {
+                CustomizedException exception = expectThrows(CustomizedException.class, () -> {
+                    collector.measure(pjp);
+                });
+                assertThat(exception.getMessage()).isEqualTo(customizedException.getMessage());
+            }
         }
     }
 
