@@ -5,7 +5,7 @@ This component providing few built in metrics for springboot based web applicati
 
 
 #### Getting Started
-- Add dependency:
+- Add dependency in `build.gradle`:
 ```groovy
     compile: com.github.nicholasren:prometheus-springboot-support:0.0.3
 ```
@@ -27,6 +27,10 @@ public class HelloController {
 - Start your application and view metrics are exposed via `http://localhost:8080/<context-path>/metrics`.
 
 #### Get snapshot version
-To use latest snapshot version, add the following repo
+To use snapshot version, add the following repo in `build.gradle`
 
-`https://oss.sonatype.org/content/repositories/snapshots`
+```groovy
+repositories {
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+```
