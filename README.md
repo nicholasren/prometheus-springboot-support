@@ -24,7 +24,7 @@ public class HelloController {
 }
 ```
 
-- Start your application and view metrics are exposed via `http://localhost:8080/<context-path>/metrics`.
+- Start your application and view metrics are exposed via `http://<path-to-your-app>/metrics`.
 
 #### Get snapshot version
 To use snapshot version, add the following repo in `build.gradle`
