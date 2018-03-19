@@ -4,3 +4,7 @@ gradle
 gradlew
 **/build/
 gradle.properties
+**/*.iml
+**/*.ipr
+**/*.iws
+**/out/

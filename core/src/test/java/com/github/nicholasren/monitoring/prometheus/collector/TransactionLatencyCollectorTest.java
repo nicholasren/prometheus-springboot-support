@@ -1,7 +1,8 @@
 package com.github.nicholasren.monitoring.prometheus.collector;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.expectThrows;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -99,7 +100,7 @@ public class TransactionLatencyCollectorTest {
             @DisplayName("should retain existing exception")
             @Test
             public void shouldRetainExistingException() {
-                CustomizedException exception = expectThrows(CustomizedException.class, () -> {
+                CustomizedException exception = assertThrows(CustomizedException.class, () -> {
                     collector.measure(pjp);
                 });
                 assertThat(exception.getMessage()).isEqualTo(customizedException.getMessage());
