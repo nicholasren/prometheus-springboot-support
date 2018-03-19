@@ -4,6 +4,7 @@ dependencies {
     compile lib.springBootStarterAop
     compile lib.springBootAutoConfig
     compile lib.springBootStarterTomcat
+    compile "com.fasterxml.jackson.core:jackson-databind:2.9.0"
 
     testCompile lib.junitApi
     testCompile lib.junitEngine

@@ -20,15 +20,15 @@ project.extensions.create("lib", Library)
 // Versions for families of library (multiple artifacts with the same version)
 // NOTE: Changing any of these versions may require update of other library versions
 
-def springFrameworkVersion = '4.2.6.RELEASE'
-def springBootVersion = '1.3.4.RELEASE'
+def springFrameworkVersion = '5.0.4.RELEASE'
+def springBootVersion = '2.0.0.RELEASE'
 def slf4jVersion = '1.7.21'
 def junitJupiterVersion = '5.1.0'
 def junitPlatformRunnerVersion = '1.1.0'
 
 
 lib.definitions = [
-        aspectjWeaver          : "org.aspectj:aspectjweaver:1.8.9",
+        aspectjWeaver          : "org.aspectj:aspectjweaver:1.8.13",
         servletApi             : "javax.servlet:javax.servlet-api:3.1.0",
 
         springWeb              : "org.springframework:spring-web:${springFrameworkVersion}",

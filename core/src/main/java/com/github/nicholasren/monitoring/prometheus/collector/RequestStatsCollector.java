@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import io.prometheus.client.Counter;
 import io.prometheus.client.Gauge;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.web.filter.GenericFilterBean;
 
 public class RequestStatsCollector extends GenericFilterBean {
