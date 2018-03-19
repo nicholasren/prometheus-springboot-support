@@ -2,8 +2,7 @@
 - [X] Support Annotation based integration
 - [ ] Support java agent instrument
 
-
-####### Release process
+###### Release process
 
 - Run `./gradlew uploadArchives` to build and upload archives to `oss`
 - Login to [nexus oss](https://oss.sonatype.org). 
