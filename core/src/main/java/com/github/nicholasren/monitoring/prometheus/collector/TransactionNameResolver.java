@@ -7,7 +7,7 @@ import com.github.nicholasren.monitoring.prometheus.support.Arrays;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-class TransactionNameResolver {
+final class TransactionNameResolver {
 
     private static final String DEFAULT_PATH = "";
 

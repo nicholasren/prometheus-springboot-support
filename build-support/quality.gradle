@@ -11,31 +11,26 @@ pmd {
 }
 
 pmdMain {
-    ruleSetFiles = files("${configDir}/pmd/pmd.xml")
+    ruleSetFiles = files("${project.configDir}/pmd/pmd.xml")
 }
 
 pmdTest {
-    project.pmd.ruleSetFiles = files("${configDir}/pmd/test-pmd.xml")
+    project.pmd.ruleSetFiles = files("${project.configDir}/pmd/test-pmd.xml")
 }
 
 checkstyle {
     ignoreFailures = false
     toolVersion = '6.18'
-    configProperties 'configDir': configDir
+    configProperties 'configDir': project.configDir
 }
 
 checkstyleMain {
     classpath += configurations.compile
-    configFile = file("${configDir}/checkstyle/checkstyle.xml")
-}
-
-checkstyleTest {
-    classpath += configurations.compile
-    configFile = file("${configDir}/checkstyle/test-checkstyle.xml")
+    configFile = file("${project.configDir}/checkstyle/checkstyle.xml")
 }
 
 findbugs {
-    includeFilter = file("${configDir}/findbugs/findbugs.xml")
-    excludeFilter = file("${configDir}/findbugs/findbugs-suppressions.xml")
+    includeFilter = file("${project.configDir}/findbugs/findbugs.xml")
+    excludeFilter = file("${project.configDir}/findbugs/findbugs-suppressions.xml")
 }
 

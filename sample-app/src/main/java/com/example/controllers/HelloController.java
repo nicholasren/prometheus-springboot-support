@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/hello")
-@MonitoredController //TODO: Annotate target bean
+@MonitoredController
 public class HelloController {
+
     public HelloController() {
         System.out.println("initing");
     }

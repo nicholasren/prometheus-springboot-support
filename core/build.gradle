@@ -1,5 +1,6 @@
 archivesBaseName = "prometheus-springboot-support"
 
+apply from: "${rootDir}/build-support/quality.gradle"
 apply from: "${rootDir}/build-support/release.gradle"
 
 dependencies {

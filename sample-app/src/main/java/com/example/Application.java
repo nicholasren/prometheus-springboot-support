@@ -6,10 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import(MonitoringConfig.class) //TODO: import JavaConfig
-public class Application {
+@Import(MonitoringConfig.class)
+public final class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    private Application() {
     }
 }
