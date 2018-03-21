@@ -11,7 +11,7 @@ for old version of springboot, use `0.0.3`
 #### Getting Started
 - Add dependency in `build.gradle`:
 ```groovy
-    compile: com.github.nicholasren:prometheus-springboot-support:0.0.4
+    compile: 'com.github.nicholasren:prometheus-springboot-support:0.0.4'
 ```
 - Import monitoring config:
 ```java
